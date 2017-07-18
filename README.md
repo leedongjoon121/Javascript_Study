@@ -2,11 +2,13 @@
 자바스크립트를 공부하며, 잊지 말아야 할 내용들을 정리
 
 * [1. 자바스크립트 객체](##자바스크립트객체)
+* [2. 자바스크립트 객체와 속성](##객체와속성)
 
 
 ---
 
-## 자바스크립트 객체
+## 자바스크립트객체
+
 자바스크립트에서는 거의 모든 것들이 객체이거나 객체처럼 동작한다.
 
 ```swift
@@ -126,7 +128,43 @@ myObject와 myString은 둘다 객체이다. 두객체 모두 속성을 가지�
 ```
 보통은 리터럴 방식을 사용하면 new 연산자를 사용한 것과 동일한 효과를 볼수있으며 심지어 훨씬 편리함
 
+<br/>
+<br/>
 
+## 객체와속성
+
+### 1. 복합 객체에 다른객체 포함하기
+Object(), Arrray(), Function() 객체는 다른 복합 객체를 포함할 수있다.
+
+```swift
+   <script>
+   
+      var object1 = {
+             object2 : {
+                object2_1 : {name:'dong'},
+                object2_2 : {},
+             },
+             object3 : {
+               object3_1 : {},
+               object3_2 : {},
+             }
+      }; 
+      
+      console.log(object1.object2.object2_1.name); // 'dong' 이 기록됨
+    </script>
+```
+
+### 2. 객체의 속성을 삭제 할 수있다.
+delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거할 수 있다.
+
+```swift
+  <script>
+    var man = {name : 'dong'};
+    delete man.name;
+    console.log('dong' in man); // in : 해당 객체에 해당 속성이 있는지 검사, false가 찍힘
+  </script>
+```
+★ 단, delete연산자는 프로토타입 체인에 있는속성을 제거 하지는 않는다!! 객체의 속성만 제거 ★
 
 
 # Swift : 이부분은 삭제 예정
