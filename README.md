@@ -10,7 +10,8 @@
 <br/>
 
 * [1. 자바스크립트 객체](##자바스크립트객체)
-* [2. 자바스크립트 객체와 속성](##객체와속성)
+* [2. 자바스크립트 객체와 속성](#객체와속성)
+* [3. Function 객체](##Function객체)
 
 
 ---
@@ -139,7 +140,7 @@ myObject와 myString은 둘다 객체이다. 두객체 모두 속성을 가지�
 <br/>
 <br/>
 
-## 객체와속성
+# 객체와속성
 
 ### 1. 복합 객체에 다른객체 포함하기
 Object(), Arrray(), Function() 객체는 다른 복합 객체를 포함할 수있다.
@@ -199,6 +200,23 @@ delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거�
 ```
 어떤 속성이 없는 객체에서 해당 속성을 찾으면, 자바스크립트는 이 값을 프로토타입 체인에서 찾는다
 프로토타입 체인의 종점은 Object.prototype이다
+
+<br/>
+
+#### 따라서 모든 객체는 Object.prototype을 상속 받는다.
+
+```swift
+   <script>
+    Object.prototype.dongjoon = 'handsome';
+    
+    var myString = 'kim';
+    
+    console.log(myString.dongjoon); // 'handsome'이 기록된다 => 
+                                   // 프로토타입체인을 통해 Object.prototype.dongjoon 로 부터 가져왔다
+   </script>
+
+```
+
 
 # Swift : 이부분은 삭제 예정
 
