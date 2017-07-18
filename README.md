@@ -66,28 +66,42 @@ myObject와 myString은 둘다 객체이다. 두객체 모두 속성을 가지�
 <br/>
 
 #### 2. 자바스크립트 생성자는 객체 인스턴스를 생성하고 반환한다.
-+ **생성자 함수의 역할** : 같은값과 동작을 공유하는 객체를 여러개 만드는것.
- - 생성자 함수는 새로 만든 객체(즉,this)를 반환한다.
-
-블럭 구조는 `"{ }"` 로 구분한다. 라인 구분 없이 작성하는 것도 가능 하지만 보기에 좋지 않기 때문에 권장되지 않는다.
++ **생성자 함수의 역할** : 같은값과 동작을 공유하는 객체를 여러개 만드는것. => 생성자 함수는 새로 만든 객체(즉,this)를 반환한다.
 
 ```swift
-class Doc {
-    func bark() {
-        print("woof")
-    }
-}
+  <script>
+  
+    // Array 객체의 인스턴스를 만들어 myArray에 저장한다.
+    var myArray = new Array(); 
+    
+    console.log(typeof myArray); // Object가 기록된다?? =>  왜냐하면, 배열은 객체(Object)의 한 종류이다.
+     
+    console.log(myArray); // [] 기록
+    
+    console.log(myArray.constructor); // Array() 가 기록된다
+    
+  </script>
 ```
+자바스크립트에서 대부분의 값(원시값은 제외)은 생성자 함수를 사용해 객체로 만들거나 인스턴스화 할 수있다.
 
-#### Swift 언어의 특징
-+ **빠르다** : 새로운 설계로 기존 Objective-C보다 실행속도가 빠름. Swift라는 단어는 빠르다 혹은 '칼새'라는 의미를 가지고 있다. Swift 로고가 바로 칼새.
-+ **현대적이다** : Scala, JavaScript, Phython, Ruby 등 새로운 언어의 특징을 수용함.
-+ **안전하다** : 문법적으로 실행 중에 오류가 발생하기 어려운 구조로 만들어짐. 실행중 발생할 수 있는 오류를 문법오류(ex. optional)로 알려줌. Swift3 에 이르러서는 실행중에 오류가 나는 프로그램을 만드는것 자체가 어려워짐.
+<br/>
 
-
+#### 자바스크립트에 포함된 네이티브(내장) 객체 생성자
+ - Number()
+ - String()
+ - Boolean()
+ - Object()
+ - Array()
+ - Function()
+ - Date()
+ - RegExp()
+ - Error()
 
 
 ---
+<hr/>
+
+# Swift : 이부분은 삭제 예정
 
 ## 2. 기초 문법
 
