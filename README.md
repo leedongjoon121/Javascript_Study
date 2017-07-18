@@ -1,6 +1,14 @@
 # Javascript_Study
 자바스크립트를 공부하며, 잊지 말아야 할 내용들을 정리
 
+### name :  Dongjoonlee 
+### nation : south korea
+### date of birth : 1993.04.06
+### univ : gachon university
+### email : ehdwns46@naver.com
+
+<br/>
+
 * [1. 자바스크립트 객체](##자바스크립트객체)
 * [2. 자바스크립트 객체와 속성](##객체와속성)
 
