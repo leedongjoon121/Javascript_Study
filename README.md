@@ -174,6 +174,31 @@ delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거�
 ```
 ★ 단, delete연산자는 프로토타입 체인에 있는속성을 제거 하지는 않는다!! 객체의 속성만 제거 ★
 
+<br/><br/>
+
+### ★☆★☆ 3. 프로토타입 체인 ★☆★☆
+예를 들어 접근한 속성이 객체에 포함되어 있지 않으면 자바스크립트는 항상 프로토타입체인을 이용해 속성과 메서드를 찾는다
+
+
+```swift
+  <script>
+    var myArray = ['lee','kim'];
+    
+    console.log(myArray.join()); // join :  배열을 구성하는 각 요소들을 하나의 문자열로 변환
+      // join 메서드는 myArray의 메서드가 아닌데도 기능이 동작 => 프로토타입체인 동작
+      // Array.prototype.join 으로 처리 되어 동작
+      
+    var myArray2 = ['dong','joon'];
+    
+    console.log(myArray2.toLocalString());  // 'dong,joon' 이기록됨
+      // 1. toLocalString()는 myArray객체에서 정의 되어 있지않다.
+      // 2. 따라서, Array.prototype에서 toLocalString()을 찾아본다 => 하지만 없다.
+      // 3. 따라서, Object.prototype에서 toLocalString()을 찾아본다 => 존재한다.
+      // 4. Object.prototype까지 올라가서 찾아보고 있으면 적용, 없으면 undifinded
+  </script>
+```
+어떤 속성이 없는 객체에서 해당 속성을 찾으면, 자바스크립트는 이 값을 프로토타입 체인에서 찾는다
+프로토타입 체인의 종점은 Object.prototype이다
 
 # Swift : 이부분은 삭제 예정
 
