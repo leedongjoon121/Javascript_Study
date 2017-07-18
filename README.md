@@ -7,7 +7,10 @@
 ### univ : gachon university
 ### email : ehdwns46@naver.com
 
+<hr/>
 <br/>
+
+## 목차
 
 * [1. 자바스크립트 객체](#자바스크립트객체)
 * [2. 자바스크립트 객체와 속성](#객체와속성)
