@@ -9,14 +9,14 @@
 
 <br/>
 
-* [1. 자바스크립트 객체](##자바스크립트객체)
+* [1. 자바스크립트 객체](#자바스크립트객체)
 * [2. 자바스크립트 객체와 속성](#객체와속성)
-* [3. Function 객체](##Function객체)
+* [3. Function 객체](#Function객체)
 
 
 ---
 
-## 자바스크립트객체
+# 자바스크립트객체
 
 자바스크립트에서는 거의 모든 것들이 객체이거나 객체처럼 동작한다.
 
@@ -217,26 +217,37 @@ delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거�
 
 ```
 
+<br/>
 
-# Swift : 이부분은 삭제 예정
+# Function객체
 
-## 2. 기초 문법
 
-### 2.1 변수 선언
-+ var : 변수
-+ let : 상수
-+ 타입 지정
+```swift
+   <script>
+    
+    //생성자를 이용해 function 객체 할당
+    var func1 = new Function('num1','num2','return num1+num2');
+    console.log(func1(2,4)); // 6
+    
+    // 리터럴 방식을 이용해 function 객체 할당
+    var func2 = function(num1,num2){return num1+num2 ;};
+    console.log(func2(2,4); // 6
+    
+   </script>
 
 ```
-변수명: 타입 형식임. `ex) myVar: Int`
-```
-+ 명명 규칙
 
-| Name        |     Description      |               Example |
-| :---------- | :------------------: | --------------------: |
-| Camel Case  | 두번째 단어부터 시작 단어를 대문자로 |   myData, productName |
-| Pascal Case |  모든 단어의 시작 단어를 대문자로  |   MyData, ProductName |
-| Snake Case  |    단어 사이에 언더바를 붙임    | my_data, product_name |
+아래의 내용들은 추후 업로드 예정 
+
+###  1.자바스크립트에서 함수를 정의하는 세가지 방식 ★☆★☆
+
+###  2.자바스크립트에서 함수 호출하는 네가지 패턴 ★☆★☆
+
+###  3. 함수는 1 클래스이다 ★☆★☆
+
+###  4. 익명 함수 ★☆★☆
+
+###  5. 자기호출 표현식 ★☆★☆
 
 
 
