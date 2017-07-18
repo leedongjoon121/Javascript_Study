@@ -1,5 +1,5 @@
 # Javascript_Study
-자바스크립트를 공부하며, 잊지 말아야 할 내용들을 정리
+자바스크립트 핵심 기능 & 개념 정리 => 추후 응용 단계까지 업로드 예정
 
 ### name :  Dongjoonlee 
 ### nation : south korea
