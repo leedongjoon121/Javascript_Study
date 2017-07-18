@@ -1,45 +1,60 @@
 # Javascript_Study
 자바스크립트를 공부하며, 잊지 말아야 할 내용들을 정리
 
----
-layout: post
-comments: true
-title: Swift 언어의 기초
-tags: iOS Swift dinfree
----
-
-
 **Index**
 
-* TOC
-{:toc}
-
-**Resources**
-
-* 스위프트로 시작하는 아이폰 앱 개발 교과서
-* [The Swift Programming Language (Swift 3.0.1)-Apple](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0)
-* swift_basic_dinfree.playground
-
 ---
 
-## 1. 시작하기
-완전한 Swift 명령은 statement 이다. 하나의 statement는 기본적으로 라인으로 구분한다.
+## 1. 자바스크립트 객체
+자바스크립트에서는 거의 모든 것들이 객체이거나 객체처럼 동작한다.
 
 ```swift
-print("hello")
-print("world")
+  <script>
+  
+  var myObject = new Object();
+  myObject['0'] = 'l';
+  myObject['1'] = 'e';
+  myObject['2'] = 'e';
+  
+  console.log(myObject); // Object {0="l", 1="e", 2 = "e"}가 기록된다
+  
+  var myString = new String('dongjoon');
+  console.log(myString); // dongjoon {0="l", 1="e", 2 = "e"}가 기록된다
+  </script>
 ```
 
-만일 한줄에 두 statement 를 작성하려면 ";"로 구분해야 한다.물론 세미콜론은 항상 붙여도 상관 없다.
+myObject와 myString은 둘다 객체이다. 두객체 모두 속성을 가지고 있으며 속성을 상속하고 생성자
+함수를 사용해 만들어졌다.
 
-`print("hello"); print("world")`
-
-주석은 다른 프로그램언어와 동일한 스타일을 지원한다.
+사용자 정의 생성자 함수를 통해서도 객체를 만들수 있다.
 
 ```swift
-print("hello") // 주석입니다.
-/* 이것도 주석 입니다. */
-print("world")
+ <script>
+ 
+   var dong1 = new Object();
+   dong1.living = true;
+   dong1.age = 25;
+   dong1.gender = 'male';
+   dong1.getGender = function(){return dong1.gender;};
+   console.log(dong1); // Object {living=true, age = 25, gender = "male" ...}객체가 기록된다.
+   
+   /* 아래에서도 동일한 객체가 만들어지지만 네이티브 Object()생성자가 아닌 사용자가
+      정의한 생성자와 new연산자를 사용해 인스턴스로 만들수있다.
+   */
+   
+   // 사용자가 정의한 생성자 포멧
+   var Person = function(living,age,gender){
+    this.living = living;
+    this.age = age;
+    this.gender = gender;
+    this.getGender = function(){return this.gender;};
+   }
+   
+   var dong2 = new Person(true,25,'male');
+   
+   console.log(dong2);
+ </script>
+
 ```
 
 블럭 구조는 `"{ }"` 로 구분한다. 라인 구분 없이 작성하는 것도 가능 하지만 보기에 좋지 않기 때문에 권장되지 않는다.
