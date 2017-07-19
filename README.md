@@ -243,8 +243,54 @@ delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거�
 아래의 내용들은 추후 업로드 예정 
 
 ###  1.자바스크립트에서 함수를 정의하는 세가지 방식 ★☆★☆
+자바스크립트 함수는 함수 생성자, 함수 선언문, 함수 표현식 세가지의 다른 방식으로 정의할 수 있다.
+
+```swift
+ <script>
+ 
+   //1.  함수 표현식
+    var myFunc = function(x,y){return x+y};
+    console.log(myFunc(5,5)); // 10출력
+   
+   //2.  함수 생성자
+    var myFunc2 = new Function('x','y','return x+y'); //마지막 매개변수는 로직부분
+    console.log(myFunc2(7,8)); // 15출력
+   
+   //3.  함수 선언문
+    function myFunc3(x,y){ return x+y };
+    console.log(myFunc3(10,20)); // => 30출력
+   
+ </script>
+```
 
 ###  2.자바스크립트에서 함수 호출하는 네가지 패턴 ★☆★☆
+자바스크립트 함수는 함수, 메서드, 생성자, apply() or call()을 이용하여 호출 가능
+
+```swift
+  <script>
+  
+   // 함수 패턴
+    var myFunc = function(){return 'dongjoon'};
+    console.log(myFunc()); // 'dongjoon' 이 출력
+    
+   // 메서드 패턴
+    var myFunc2 = {
+                    dongjoon : function(){return 'dj';}
+                   };
+    console.log(myFunc2.dongjoon()); // 'dj' 이 출력
+   
+   // 생성자 패턴
+    var Human = function(name,age,tall){
+      this.name = name;
+      this.age = age;
+      this.tall = tall;
+    };
+    var Djobj = new Human('dongjoon',25,185);
+    console.log(Djobj.name, Djobj.age, Djobj.tall); // dongjoon 25 185 출력
+   
+    
+  </script>
+```
 
 ###  3. 함수는 1 클래스이다 ★☆★☆
 
