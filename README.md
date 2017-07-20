@@ -19,6 +19,7 @@
 * [5. 함수 호출하는 네가지 패턴 ★☆★☆](#중요2)
 * [6. 1급 객체 ★☆★☆](#중요3)
 * [7. 익명함수&즉시실행함수 ★☆★☆](#중요4)
+* [8. Javascript Event](#중요5)
 
 
 
@@ -399,6 +400,101 @@ delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거�
 ```
 
 ###  5. 자바스크립트 스코프 ★☆★☆
+
+# 중요5
+
+## Javascript Event
+
+### 1. load 
+로드 이벤트는 리소스나 종속된 리소스가 로딩이 완료 되었을때
+
+```swift
+  <script>
+    window.addEventListener("load",function(event){
+       console.log("모든 자원의 로딩이 끝났을때");
+    });
+  </script>
+```
+
+<br/>
+
+### 2. beforeunload
+beforeunload 이벤트는 window나 document, resource가 unloaded될 때
+해당 document는 계속 보여지며, 이벤트 취소가 아직 가능한 상태
+
+```swift
+    <script>
+      window.addEventListener("beforeunloaded",function(event){
+          event.preventDefault();
+      });
+    </script>
+```
+<br/>
+
+### 3. DOMContentLoaded
+DOMContentLoaded 이벤트는 스타일시트,이미지 및 하위 프레임로드가 완료될 때 까지 기다리지 않고
+초기 html document가 완전히 load 되고 parse 될 때 발생
+
+```swift
+    <script>
+      document.addEventListener("DOMContentLoaded",function(){
+          console.log("DOM이 완전히 load 되고 pared 됬을 때");
+      });
+           
+        for(var i = 0; i<10; i++){
+            console.log(i);
+        }
+        // for 문이 다돌고 난 다음에 DOMContentLoaded 찍힘   
+    </script>
+```
+
+### 4. document.createElement
+지정된 태그이름을 가지는 엘리먼트를 생성합니다. 
+- 형식 : 엘리먼트 = document.createElement(태그이름);
+
+```swift
+  <html>
+   <head>
+    <script>
+      var myDiv = null; // 기존의 Dom안에 있는 element
+      var newDiv = null; // createElement로 생성
+    
+        function addElement(){    
+        newDiv = document.createElement("div"); // 새로운 element생성
+        newDiv.innerHTML = "<h1>새롭게 추가된 element</h1>"; // 내용 추가
+        
+        myDiv = document.getElementById("dongjoon"); // 기존 element
+        document.body.insertBefore(newDiv,myDiv); //할당   
+        }
+    </script>
+   </head>
+    <body onload="addElement()"> 
+    <div id = "dongjoon">동적으로 만들어 질 위치</div>
+ </body>
+</html>
+```
+
+### 5. Node.appendChild()
+한 노드를 특정 부모노드의 자식 노드 리스트중 마지막 자식 노드로 붙임
+
+```swift
+    <script> 
+     window.onload = function(){
+         var div1 = document.createElement("div");
+         var divtext = document.createTextNode("my name is ...");
+         div1.appendChild(divtext);
+         document.body.appendChild(div1);
+         
+         // 문서의 객체 속성 변경시
+         var img = document.createElement("img");
+         img.setAttribute("src","flower.jpg"); // img.src = "flower.jpg"; 와 동일
+         img.setAttribute("width","100"); // img.width = 100; 와 동일
+         img.setAttribute("height","100"); // img.height = 100; 와 동일
+         document.body.appendChild(img);
+     }
+    </script>
+```
+
 
 
 
