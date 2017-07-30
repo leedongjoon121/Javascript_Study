@@ -1,506 +1,66 @@
-# Javascript_Study
-자바스크립트 핵심 기능 & 개념 정리 => 추후 응용 단계까지 업로드 예정
-
-### name :  Dongjoonlee 
-### nation : south korea
-### date of birth : 1993.04.06
-### univ : gachon university
-### email : ehdwns46@naver.com
+# Ajax
 
 <hr/>
 <br/>
 
 ## 목차
 
-* [1. 자바스크립트 객체](#자바스크립트객체)
-* [2. 자바스크립트 객체와 속성](#객체와속성)
-* [3. Function 객체](#자바스크립트함수)
-* [4. 함수를 정의하는 세가지 방식 ★☆★☆](#중요1)
-* [5. 함수 호출하는 네가지 패턴 ★☆★☆](#중요2)
-* [6. 1급 객체 ★☆★☆](#중요3)
-* [7. 익명함수&즉시실행함수 ★☆★☆](#중요4)
-* [8. Javascript Event](#중요5)
-* [9. xmlhttpRequest](#중요6)
-
+* [1. JQuery Ajax](#JQuery-Ajax)
 
 
 ---
 
-# 자바스크립트객체
-
-자바스크립트에서는 거의 모든 것들이 객체이거나 객체처럼 동작한다.
-
-```swift
-  <script>
-  
-  var myObject = new Object();
-  myObject['0'] = 'l';
-  myObject['1'] = 'e';
-  myObject['2'] = 'e';
-  
-  console.log(myObject); // Object {0="l", 1="e", 2 = "e"}가 기록된다
-  
-  var myString = new String('dongjoon');
-  console.log(myString); // dongjoon {0="l", 1="e", 2 = "e"}가 기록된다
-  </script>
-```
-
-myObject와 myString은 둘다 객체이다. 두객체 모두 속성을 가지고 있으며 속성을 상속하고 생성자
-함수를 사용해 만들어졌다.
+# JQuery-Ajax
+## Ajax : Asynchronous Javascript And Xml
+### XHR(XmlHttpRequest)객체이용
+### XHR 객체를 이용한 요청 단위는 페이지가 아니라 데이터
+- 자바스크립트 코드를 이용하여 XHR객체를 통해 HTTP서버와 데이터를 주고받음
+- 브라우저 화면의 일부만 갱신할 수 있음
+- 주로, 서버에 HTTP요청을 보낸뒤 XML,JSON,TEXT형식 등으로 응답을 받아 페이지의 일부만 변경
 
 <br/>
 
-사용자 정의 생성자 함수를 통해서도 객체를 만들수 있다.
+### JQuery Ajax 규격
+#### $.ajax()
+- 제이쿼리에서 모든 Ajax() 메소드는 내부적으로는 $.ajax()메서드를 사용(기본메서드)
+- $.ajax() 메서드는 사용자가 지정한 URL 경로에 파일의 데이터를 전송하고,  URL파일로부터
+  요청한 데이터를 불러오는 기능을 수행
+- 불러올 수 있는 외부 데이터로는 HTML, XML, JSON, TEXT유형 등이 있음
 
 ```swift
- <script>
- 
-   var dong1 = new Object();
-   dong1.living = true;
-   dong1.age = 25;
-   dong1.gender = 'male';
-   dong1.getGender = function(){return dong1.gender;};
-   console.log(dong1); // Object {living=true, age = 25, gender = "male" ...}객체가 기록된다.
-   
-   /* 아래에서도 동일한 객체가 만들어지지만 네이티브 Object()생성자가 아닌 사용자가
-      정의한 생성자와 new연산자를 사용해 인스턴스로 만들수있다.
-   */
-   
-   // 사용자가 정의한 생성자 포멧
-   var Person = function(living,age,gender){
-    this.living = living;
-    this.age = age;
-    this.gender = gender;
-    this.getGender = function(){return this.gender;};
-   }
-   
-   var dong2 = new Person(true,25,'male');
-   
-   console.log(dong2);
- </script>
-
+  $.ajax({
+      url :  // 전송 페이지(액션 페이지)
+      type : // 전송방식(get,post)
+      data : // 전송할 데이터
+      timeout : 응답 제한시간
+      datatype : 요청한 데이터 타입(HTML,XML,JSON,TEXT등)
+      async : //비동기 여부(default : true)
+      success : function(data){    }     // 성공콜백함수, data : 서버의 반환값
+      error : function(){  }    // 실패 콜백함수
+      complete : // function(){   }     // 요청이 완료 되었을때 실행콜백함수  
+  });
 ```
-사실 자바스크립트에 원래 포함된 네이티브 객체생성자는 굉장히 작으며, 이러한 객체 생성자는 세분화된 자료형(ex, 숫자,문자열,함수,객체,배열 등)값을
-표현하는 복합 객체를 만들때 사용된다.
-
-결국 객체를 어떻게 만들던 상관없이 최종 결과로는 결국 복합객체가 만들어진다.
-
-<br/>
-
-### 1. 자바스크립트 생성자는 객체 인스턴스를 생성하고 반환한다.
-+ **생성자 함수의 역할** : 같은값과 동작을 공유하는 객체를 여러개 만드는것. => 생성자 함수는 새로 만든 객체(즉,this)를 반환한다.
-
+### JQuery Ajax 메서드
+- $.get()    :  GET 방식의 ajax() 메서드
 ```swift
-  <script>
-  
-    // Array 객체의 인스턴스를 만들어 myArray에 저장한다.
-    var myArray = new Array(); 
-    
-    console.log(typeof myArray); // Object가 기록된다?? =>  왜냐하면, 배열은 객체(Object)의 한 종류이다.
-     
-    console.log(myArray); // [] 기록
-    
-    console.log(myArray.constructor); // Array() 가 기록된다
-    
-  </script>
+  $.get('index.html',function(data){
+      $('#area').html(data);
+  });
 ```
-자바스크립트에서 대부분의 값(원시값은 제외)은 생성자 함수를 사용해 객체로 만들거나 인스턴스화 할 수있다.
-
-<br/>
-
-#### 자바스크립트에 포함된 네이티브(내장) 객체 생성자
- - Number()
- - String()
- - Boolean()
- - Object()
- - Array()
- - Function()
- - Date()
- - RegExp()
- - Error()
-
-
----
-<hr/>
-
-### 2. 리터럴을 사용한 값 생성하기 
-
-자바스크립트에는 new 연산 방식말고 네이티브 객체값을 만들수 있는 "리터럴" 이라는 방식이 있다.
-
+- $.post()    :  POST 방식의  ajax() 메서드
 ```swift
-  <script>
-    
-    var myObject = new Object();
-    var myOjbectLiteral = { }; // 리터럴
-    
-    var myArray = new Array('dong','joon');
-    var myArrayLiteral = ['dong','joon'];  // 리터럴
-    
-    var myFunc = new Function("x","y","return x+y");
-    var myFuncLiteral = function(x,y){return x+y}; // 리터럴
-    
-    var myRegExp = new RegExp('\bt[a-z]+\b');
-    var myRegExpLiteral = /\bt[a-z]+\b/; // 리터럴
-    
- </script>
-
+     $.post('index.html',function(data){
+       $('#area').html(data);
+     });
 ```
-보통은 리터럴 방식을 사용하면 new 연산자를 사용한 것과 동일한 효과를 볼수있으며 심지어 훨씬 편리함
-
-<br/>
-<br/>
-
-# 객체와속성
-
-### 1. 복합 객체에 다른객체 포함하기
-Object(), Arrray(), Function() 객체는 다른 복합 객체를 포함할 수있다.
-
+- $.getJSON()    : JSON 형식으로 응답받음
 ```swift
-   <script>
-   
-      var object1 = {
-             object2 : {
-                object2_1 : {name:'dong'},
-                object2_2 : {},
-             },
-             object3 : {
-               object3_1 : {},
-               object3_2 : {},
-             }
-      }; 
-      
-      console.log(object1.object2.object2_1.name); // 'dong' 이 기록됨
-    </script>
+   $.getJSON('sample.json',function(data){
+      $('#area').html('<p>'+data.age+'</p>');
+   });
 ```
-
-### 2. 객체의 속성을 삭제 할 수있다.
-delete연산자를 이용하면 객체에서 특정 속성을 완전히 제거할 수 있다.
-
+- load()    : 서버로부터 데이터를 받아서 일치하는 요소 안에 HTML을 추가
 ```swift
-  <script>
-    var man = {name : 'dong'};
-    delete man.name;
-    console.log('dong' in man); // in : 해당 객체에 해당 속성이 있는지 검사, false가 찍힘
-  </script>
+    $('#area').load('index.html',function(){    });
 ```
-★ 단, delete연산자는 프로토타입 체인에 있는속성을 제거 하지는 않는다!! 객체의 속성만 제거 ★
-
-<br/><br/>
-
-### ★☆★☆ 3. 프로토타입 체인 ★☆★☆
-예를 들어 접근한 속성이 객체에 포함되어 있지 않으면 자바스크립트는 항상 프로토타입체인을 이용해 속성과 메서드를 찾는다
-
-
-```swift
-  <script>
-    var myArray = ['lee','kim'];
-    
-    console.log(myArray.join()); // join :  배열을 구성하는 각 요소들을 하나의 문자열로 변환
-      // join 메서드는 myArray의 메서드가 아닌데도 기능이 동작 => 프로토타입체인 동작
-      // Array.prototype.join 으로 처리 되어 동작
-      
-    var myArray2 = ['dong','joon'];
-    
-    console.log(myArray2.toLocalString());  // 'dong,joon' 이기록됨
-      // 1. toLocalString()는 myArray객체에서 정의 되어 있지않다.
-      // 2. 따라서, Array.prototype에서 toLocalString()을 찾아본다 => 하지만 없다.
-      // 3. 따라서, Object.prototype에서 toLocalString()을 찾아본다 => 존재한다.
-      // 4. Object.prototype까지 올라가서 찾아보고 있으면 적용, 없으면 undifinded
-  </script>
-```
-어떤 속성이 없는 객체에서 해당 속성을 찾으면, 자바스크립트는 이 값을 프로토타입 체인에서 찾는다
-프로토타입 체인의 종점은 Object.prototype이다
-
-<br/>
-
-#### 따라서 모든 객체는 Object.prototype을 상속 받는다.
-
-```swift
-   <script>
-    Object.prototype.dongjoon = 'handsome';
-    
-    var myString = 'kim';
-    
-    console.log(myString.dongjoon); // 'handsome'이 기록된다 => 
-                                   // 프로토타입체인을 통해 Object.prototype.dongjoon 로 부터 가져왔다
-   </script>
-
-```
-
-<br/>
-
-# 자바스크립트함수
-
-
-```swift
-   <script>
-    
-    //생성자를 이용해 function 객체 할당
-    var func1 = new Function('num1','num2','return num1+num2');
-    console.log(func1(2,4)); // 6
-    
-    // 리터럴 방식을 이용해 function 객체 할당
-    var func2 = function(num1,num2){return num1+num2 ;};
-    console.log(func2(2,4); // 6
-    
-   </script>
-
-```
-
-# 중요1
-
-<br/>
-
-###  1.자바스크립트에서 함수를 정의하는 세가지 방식 ★☆★☆
-자바스크립트 함수는 1.함수 생성자, 2.함수 선언문, 3.함수 표현식 세가지의 다른 방식으로 정의할 수 있다.
-
-```swift
- <script>
- 
-   //1.  함수 표현식
-    var myFunc = function(x,y){return x+y};
-    console.log(myFunc(5,5)); // 10출력
-   
-   //2.  함수 생성자
-    var myFunc2 = new Function('x','y','return x+y'); //마지막 매개변수는 로직부분
-    console.log(myFunc2(7,8)); // 15출력
-   
-   //3.  함수 선언문
-    function myFunc3(x,y){ return x+y };
-    console.log(myFunc3(10,20)); // => 30출력
-    
-    //4.  apply() 와 call()패턴
-    var myObject = {};
-    
-    function myFunc4(param1,param2){ 
-      this.str1 = param1;
-      this.str2 = param2;
-      console.log(this); 
-      //call() 또는 apply()를 통해 자바스크립트가 함수 스코프내에 설정한 this의 값을 재정의할 수있다.
-     };
-     
-     myFunc4.apply(myObject, ['blue','green']); //배열안에 값을 넣어야함 : Object {str1:"blue",str2:"green"}가 기록됨 , 
-   
-     myFunc4.call(myObject,'lee','dong'); // Object {str1:"lee",str2:"dong"}가 기록됨
-     
-      // apply와 call의 차이점은 함수에 매개변수를 전달하는 방식뿐이다.
- </script>
-```
-
-<br/>
-
-# 중요2
-
-###  2.자바스크립트에서 함수 호출하는 네가지 패턴 ★☆★☆
-자바스크립트 함수는 함수, 메서드, 생성자, apply() or call()을 이용하여 호출 가능
-
-```swift
-  <script>
-  
-   // 함수 패턴
-    var myFunc = function(){return 'dongjoon'};
-    console.log(myFunc()); // 'dongjoon' 이 출력
-    
-   // 메서드 패턴
-    var myFunc2 = {
-                    dongjoon : function(){return 'dj';}
-                   };
-    console.log(myFunc2.dongjoon()); // 'dj' 이 출력
-   
-   // 생성자 패턴
-    var Human = function(name,age,tall){
-      this.name = name;
-      this.age = age;
-      this.tall = tall;
-    };
-    var Djobj = new Human('dongjoon',25,185);
-    console.log(Djobj.name, Djobj.age, Djobj.tall); // dongjoon 25 185 출력
-   
-    
-  </script>
-```
-
-<br/>
-
-# 중요3
-
-###  3. 1급 객체 ★☆★☆
-1급 객체는 4가지조건을 충족 해야한다.
-- 1. 객체를 변수에 저장할 수 있어야 한다.
-- 2. 객체의 인자로 넘길 수 있어야 한다.
-- 3. 객체의 반환값을 사용할 수 있어야 한다.
-- 4. 동적으로 프로퍼티를 생성 할 수 있어야 한다.
-
-<br/>
-
-#### 1. 객체를 변수에 저장할 수 있어야 한다.
-```swift
- var a = function(){
-   console.log("1.함수를 변수에 저장합니다.");
- }();
-```
-
-<br/>
-
-#### 2. 객체의 인자로 넘길 수 있어야 한다.
-```swift
- function func(){
-   console.log("함수를 인자로 전달합니다.");
- };
- 
- var b = function(parameter){
-    parameter();
- }(func);
-```
-
-<br/>
-
-#### 3. 객체의 반환값을 사용할 수 있어야 한다.
-```swift
- function sum(a,b){
-    return a+b;
- }
- console.log("3. 반환된 값이 나옵니다. 결과값 : "+sum(5,3));
-```
-
-<br/>
-
-#### 4. 동적으로 프로퍼티를 생성 할 수 있어야 한다.
-```swift
-  var c = { };
-  c.dongjoon = function(){
-     console.log("4. 프로퍼티에 할당된 객체");
-  };
-  c.dongjoon();
-```
-
-<br/>
-
-# 중요4
-
-###  4. 익명 함수 & 즉시실행함수 ★☆★☆
-익명함수(annoymous function) : 이름이 없는 함수, 대부분 다른 함수에 매개변수로서 전달되는 경우가 많음 
-보통 즉시실행함수의 개념과 같이사용된다
-```swift
-  (function(){
-    
-    console.log("굳이 함수 이름 안주고, 내가원하는 로직을  바로 수행해!");
-    // 로직구현.........................
-    
-  })(); // 즉시실행해!
-  
-  //or
-  
-  (() => {
-  
-    console.log("굳이 함수 이름 안주고, 내가원하는 로직을  바로 수행해!");
-    // 로직구현..........................
-  
-  })();
-  
-```
-
-###  5. 자바스크립트 스코프 ★☆★☆
-
-# 중요5
-
-## Javascript Event
-
-### 1. load 
-로드 이벤트는 리소스나 종속된 리소스가 로딩이 완료 되었을때
-
-```swift
-  <script>
-    window.addEventListener("load",function(event){
-       console.log("모든 자원의 로딩이 끝났을때");
-    });
-  </script>
-```
-
-<br/>
-
-### 2. beforeunload
-beforeunload 이벤트는 window나 document, resource가 unloaded될 때
-해당 document는 계속 보여지며, 이벤트 취소가 아직 가능한 상태
-
-```swift
-    <script>
-      window.addEventListener("beforeunloaded",function(event){
-          event.preventDefault();
-      });
-    </script>
-```
-<br/>
-
-### 3. DOMContentLoaded
-DOMContentLoaded 이벤트는 스타일시트,이미지 및 하위 프레임로드가 완료될 때 까지 기다리지 않고
-초기 html document가 완전히 load 되고 parse 될 때 발생
-
-```swift
-    <script>
-      document.addEventListener("DOMContentLoaded",function(){
-          console.log("DOM이 완전히 load 되고 pared 됬을 때");
-      });
-           
-        for(var i = 0; i<10; i++){
-            console.log(i);
-        }
-        // for 문이 다돌고 난 다음에 DOMContentLoaded 찍힘   
-    </script>
-```
-
-### 4. document.createElement
-지정된 태그이름을 가지는 엘리먼트를 생성합니다. 
-- 형식 : 엘리먼트 = document.createElement(태그이름);
-
-```swift
-  <html>
-   <head>
-    <script>
-      var myDiv = null; // 기존의 Dom안에 있는 element
-      var newDiv = null; // createElement로 생성
-    
-        function addElement(){    
-        newDiv = document.createElement("div"); // 새로운 element생성
-        newDiv.innerHTML = "<h1>새롭게 추가된 element</h1>"; // 내용 추가
-        
-        myDiv = document.getElementById("dongjoon"); // 기존 element
-        document.body.insertBefore(newDiv,myDiv); //할당   
-        }
-    </script>
-   </head>
-    <body onload="addElement()"> 
-    <div id = "dongjoon">동적으로 만들어 질 위치</div>
- </body>
-</html>
-```
-
-### 5. Node.appendChild()
-한 노드를 특정 부모노드의 자식 노드 리스트중 마지막 자식 노드로 붙임
-
-```swift
-    <script> 
-     window.onload = function(){
-         var div1 = document.createElement("div");
-         var divtext = document.createTextNode("my name is ...");
-         div1.appendChild(divtext);
-         document.body.appendChild(div1);
-         
-         // 문서의 객체 속성 변경시
-         var img = document.createElement("img");
-         img.setAttribute("src","flower.jpg"); // img.src = "flower.jpg"; 와 동일
-         img.setAttribute("width","100"); // img.width = 100; 와 동일
-         img.setAttribute("height","100"); // img.height = 100; 와 동일
-         document.body.appendChild(img);
-     }
-    </script>
-```
-
-# 중요6
-
-## xmlhttpRequest
-2~3일 이내 업로드 예정........ 
-
-
-
 
