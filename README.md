@@ -5,12 +5,13 @@
 
 ## 목차
 
-* [1. JQuery Ajax](#JQuery-Ajax)
+* [1. JQuery Ajax](#JQueryAjax)
+* [2. 헬퍼함수](#헬퍼함수)
 * [2. Promise 패턴](#Promise)
 
 ---
 
-# JQuery Ajax
+# JQueryAjax
 ## Ajax : Asynchronous Javascript And Xml
 ### XHR(XmlHttpRequest)객체이용
 ### XHR 객체를 이용한 요청 단위는 페이지가 아니라 데이터
@@ -107,5 +108,16 @@
         $(this).append("<p>요청완료</p>");
     });
 ```
+# 헬퍼함수
+> JQuery Ajax()함수의 기본 Content-Type은 "application/x-www-from-urlencoded"이다
+  따라서 전송할 데이터는 QueryString형식(인코딩 폼 형식)으로 작성해야 한다.
+
+> "application/x-www-from-urlencoded" 형식의 문자열을 직접 만드는 것은 비효율적
+
+따라서 헬퍼함수가 나왔으며, 헬퍼함수는 사용자의 입력 값을 손쉽게 인코딩 폼 형식으로 변환
+
+- $(form).serialize() : 폼 요소를 선택하고 호출했을때 입력 필드의 name특성(attribute)을 이용해 인코딩된 폼 데이터 생성
+- $(form).serializeArray() :  폼 요소를 선택하고 호출했을때 입력 필드의 name특성(attribute)을 이용해 객체로 구성된 배열 생성
+- $.param()     :  객체의 배열이나 객체를 파라미터로 전달하여 인코딩된 폼 데이터를 생성
 
 # Promise
