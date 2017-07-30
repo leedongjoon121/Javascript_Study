@@ -1,4 +1,4 @@
-# Ajax
+# Ajax & Promise 
 
 <hr/>
 <br/>
@@ -6,11 +6,11 @@
 ## 목차
 
 * [1. JQuery Ajax](#JQuery-Ajax)
-
+* [2. Promise 패턴](#Promise)
 
 ---
 
-# JQuery-Ajax
+# JQuery Ajax
 ## Ajax : Asynchronous Javascript And Xml
 ### XHR(XmlHttpRequest)객체이용
 ### XHR 객체를 이용한 요청 단위는 페이지가 아니라 데이터
@@ -63,4 +63,49 @@
 ```swift
     $('#area').load('index.html',function(){    });
 ```
+- $.getScript()   : 자바스크립트 형식으로 응답 받는 ajax()메서드
+```swift
+   $.getScript('sample.js',function(){});
+```
+- $.ajaxSetup()     : ajax() 메소드의 선택 사항들에 대한 기본값 설정
+```swift
+   $.ajaxSetup({url:'service.php'});
+```
+- ajaxStart()      :   첫 번째 Ajax요청이 시작될 때 호출되는 이벤트 메소드
+```swift
+    $('#img1').ajaxStart(function(){
+        $(this).show();
+    });
+```
+- ajaxStop()      :    모든 Ajax 요청이 끝날 때 호출되는 이벤트 메소드
+```swift
+    $('#img1').ajaxStop(function(){
+        $(this).fadeOut(2000);
+    });
+```
+- ajaxSend()      :    특정 Ajax 요청을 보내기 전에 호출되는 이벤트 메소드
+```swift
+    $('#msg').ajaxSend(function(event,request,settings){
+        $(this).append("<p>"+settings.url+"페이지 요청 시작</p>");
+    });
+```
+- ajaxSuccess()    :   특정 Ajax요청이 성공적으로 완료될 때마다 호출되는 이벤트 메소드
+```swift
+    $('#mgs').ajaxSucess(function(event,request,settings){
+        $(this).append("<p>요청 성공</p>");
+    });    
+```
+- ajaxError()      :    Ajax 요청들에 대한 오류 발생시 호출되는 메소드
+```swift
+   $('#mgs').ajaxError(function(event,request,settings){
+       $(this).append("<p>"+settings.url+"페이지 요청 실패</p>");
+   });
+```
+- ajaxComplete()      :   Ajax 요청들이 완료되면(성공/실패 관련 없이) 호출되는 이벤트 메소드
+```swift
+    $('#msg').ajaxComplete(function(event,request,settings){
+        $(this).append("<p>요청완료</p>");
+    });
+```
 
+# Promise
