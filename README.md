@@ -1,5 +1,7 @@
 # memo
 ## 프로젝트 분석... 추후 업그레이드 예정
+### From :  자바스크립트프로젝트북 권대용 한빛미디어 
+### <a href = "https://github.com/csslick/memo">github</a>
 
 MIT License
 
