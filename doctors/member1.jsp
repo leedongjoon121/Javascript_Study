@@ -1,10 +1,10 @@
 <div class="cbp-l-member-img">
-	<img src="https://raw.githubusercontent.com/leedongjoon121/Javascript_Study/testbranch/img/team/1.jpg" alt="">
+	<img src="https://raw.githubusercontent.com/leedongjoon121/Javascript_Study/testbranch/img/member/LDJ.PNG" alt="">
 </div>
 <div class="cbp-l-member-info">
-	<div class="cbp-l-member-name">Alice Grue</div>
-	<div class="cbp-l-member-position">Psychiatrist</div>
+	<div class="cbp-l-member-name">LeeDongJoon</div>
+	<div class="cbp-l-member-position">Front End & Back End</div>
 	<div class="cbp-l-member-desc">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, perspiciatis, corporis, iusto a saepe iste ea odit quas fugit amet nisi adipisci excepturi ipsam quae asperiores sit blanditiis sunt ducimus magni eos non et quos dignissimos quaerat aspernatur. Enim, temporibus, ullam, vitae, accusantium veniam ut odio magni nobis animi ratione eaque at aliquam eos error quas eum unde laudantium quisquam dolores voluptas velit corporis fuga! Error, soluta, consequatur, excepturi earum laudantium ab magnam vitae eligendi consectetur dicta quo nesciunt eveniet facere iusto praesentium aliquid impedit tempora nobis deleniti fugiat corporis maiores cupiditate provident veritatis quod odio nulla vel ratione quas.
+		나는 이동준이다
 	</div>
 </div>
