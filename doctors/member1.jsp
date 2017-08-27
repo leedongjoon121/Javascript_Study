@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="cbp-l-member-img">
-	<img src="img/team/1.jpg" alt="">
+	<img src="https://raw.githubusercontent.com/leedongjoon121/Javascript_Study/testbranch/img/team/1.jpg" alt="">
 </div>
 <div class="cbp-l-member-info">
 	<div class="cbp-l-member-name">Alice Grue</div>
